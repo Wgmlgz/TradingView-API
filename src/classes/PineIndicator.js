@@ -30,7 +30,7 @@
  */
 
 /** @class */
-module.exports = class PineIndicator {
+export default class PineIndicator {
   #options;
 
   /** @type {IndicatorType} */

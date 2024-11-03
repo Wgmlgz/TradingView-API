@@ -81,7 +81,7 @@ const defaultValues = {
 };
 
 /** @class */
-module.exports = class BuiltInIndicator {
+export default class BuiltInIndicator {
   /** @type {BuiltInIndicatorType} */
   #type;
 

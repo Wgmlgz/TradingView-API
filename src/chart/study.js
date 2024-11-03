@@ -1,9 +1,9 @@
-const { genSessionID } = require('../utils');
-const { parseCompressed } = require('../protocol');
-const graphicParser = require('./graphicParser');
+import { genSessionID } from '../utils';
+import { parseCompressed } from '../protocol';
+import  graphicParser from './graphicParser';
 
-const PineIndicator = require('../classes/PineIndicator');
-const BuiltInIndicator = require('../classes/BuiltInIndicator');
+import  PineIndicator from '../classes/PineIndicator';
+import  BuiltInIndicator from '../classes/BuiltInIndicator';
 
 /**
  * Get pine inputs
@@ -145,7 +145,7 @@ const parseTrades = (trades) => trades.reverse().map((t) => ({
 /**
  * @param {import('./session').ChartSessionBridge} chartSession
  */
-module.exports = (chartSession) => class ChartStudy {
+const sus = (chartSession) => class ChartStudy {
   #studID = genSessionID('st');
 
   #studyListeners = chartSession.studyListeners;
@@ -235,7 +235,7 @@ module.exports = (chartSession) => class ChartStudy {
     this.instance = indicator;
 
     this.#studyListeners[this.#studID] = async (packet) => {
-      if (global.TW_DEBUG) console.log('§90§30§105 STUDY §0 DATA', packet);
+      if (/*TW_DEBUG*/ false) console.log('§90§30§105 STUDY §0 DATA', packet);
 
       if (packet.type === 'study_completed') {
         this.#handleEvent('studyCompleted');
@@ -433,3 +433,5 @@ module.exports = (chartSession) => class ChartStudy {
     delete this.#studyListeners[this.#studID];
   }
 };
+
+export default sus;

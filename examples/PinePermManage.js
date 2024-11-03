@@ -1,4 +1,4 @@
-const { PinePermManager } = require('../main');
+import { PinePermManager } from '../main';
 
 /**
  * This example creates a pine permission manager

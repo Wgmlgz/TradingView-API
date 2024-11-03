@@ -1,8 +1,8 @@
-const os = require('os');
-const axios = require('axios');
+import  os from 'os';
+import  axios from 'axios';
 
-const PineIndicator = require('./classes/PineIndicator');
-const { genAuthCookies } = require('./utils');
+import  PineIndicator from './classes/PineIndicator';
+import { genAuthCookies } from './utils';
 
 const validateStatus = (status) => status < 500;
 
@@ -45,7 +45,7 @@ async function fetchScanData(tickers = [], columns = []) {
  * }} Periods
  */
 
-module.exports = {
+export default {
   /**
    * Get technical analysis
    * @function getTA

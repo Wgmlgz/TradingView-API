@@ -1,4 +1,4 @@
-const TradingView = require('../main');
+import  TradingView from '../main';
 
 /**
  * This example creates a chart with all user's private indicators

@@ -1,4 +1,4 @@
-const TradingView = require('../main');
+import  TradingView from '../main';
 
 /**
  * This example creates charts of custom types such as 'HeikinAshi', 'Renko',

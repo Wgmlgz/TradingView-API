@@ -1,4 +1,4 @@
-const { Client } = require('../main');
+import { Client } from '../main';
 
 /**
  * This example tests the fake replay mode which

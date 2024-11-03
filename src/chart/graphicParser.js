@@ -204,7 +204,7 @@ const TRANSLATOR = {
  * @param {Object} indexes Drawings xPos indexes
  * @returns {GraphicData}
  */
-module.exports = function graphicParse(rawGraphic = {}, indexes = []) {
+export default function graphicParse(rawGraphic = {}, indexes = []) {
   // console.log('indexes', indexes);
   return {
     labels: Object.values(rawGraphic.dwglabels ?? {}).map((l) => ({

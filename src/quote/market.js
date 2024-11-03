@@ -6,14 +6,14 @@
  * @param {import('./session').QuoteSessionBridge} quoteSession
  */
 
-module.exports = (quoteSession) => class QuoteMarket {
+const sus = (quoteSession) => class QuoteMarket {
   #symbolListeners = quoteSession.symbolListeners;
 
-  #symbol;
+  #symbol
 
-  #session;
+  #session
 
-  #symbolKey;
+  #symbolKey
 
   #symbolListenerID = 0;
 
@@ -32,13 +32,13 @@ module.exports = (quoteSession) => class QuoteMarket {
    * @param {...{}} data Packet data
    */
   #handleEvent(ev, ...data) {
-    this.#callbacks[ev].forEach((e) => e(...data));
-    this.#callbacks.event.forEach((e) => e(ev, ...data));
+    this.#callbacks[ev].forEach((e) => e(...data))
+    this.#callbacks.event.forEach((e) => e(ev, ...data))
   }
 
   #handleError(...msgs) {
-    if (this.#callbacks.error.length === 0) console.error(...msgs);
-    else this.#handleEvent('error', ...msgs);
+    if (this.#callbacks.error.length === 0) console.error(...msgs)
+    else this.#handleEvent('error', ...msgs)
   }
 
   /**
@@ -46,41 +46,41 @@ module.exports = (quoteSession) => class QuoteMarket {
    * @param {string} session Market session (like: 'regular' or 'extended')
    */
   constructor(symbol, session = 'regular') {
-    this.#symbol = symbol;
-    this.#session = session;
-    this.#symbolKey = `=${JSON.stringify({ session, symbol })}`;
+    this.#symbol = symbol
+    this.#session = session
+    this.#symbolKey = `=${JSON.stringify({ session, symbol })}`
 
     if (!this.#symbolListeners[this.#symbolKey]) {
-      this.#symbolListeners[this.#symbolKey] = [];
+      this.#symbolListeners[this.#symbolKey] = []
       quoteSession.send('quote_add_symbols', [
         quoteSession.sessionID,
         this.#symbolKey,
-      ]);
+      ])
     }
 
-    this.#symbolListenerID = this.#symbolListeners[this.#symbolKey].length;
+    this.#symbolListenerID = this.#symbolListeners[this.#symbolKey].length
 
     this.#symbolListeners[this.#symbolKey][this.#symbolListenerID] = (packet) => {
-      if (global.TW_DEBUG) console.log('§90§30§105 MARKET §0 DATA', packet);
+      if (/*TW_DEBUG*/ false) console.log('§90§30§105 MARKET §0 DATA', packet)
 
       if (packet.type === 'qsd' && packet.data[1].s === 'ok') {
         this.#lastData = {
           ...this.#lastData,
           ...packet.data[1].v,
-        };
-        this.#handleEvent('data', this.#lastData);
-        return;
+        }
+        this.#handleEvent('data', this.#lastData)
+        return
       }
 
       if (packet.type === 'quote_completed') {
-        this.#handleEvent('loaded');
-        return;
+        this.#handleEvent('loaded')
+        return
       }
 
       if (packet.type === 'qsd' && packet.data[1].s === 'error') {
-        this.#handleError('Market error', packet.data);
+        this.#handleError('Market error', packet.data)
       }
-    };
+    }
   }
 
   /**
@@ -89,7 +89,7 @@ module.exports = (quoteSession) => class QuoteMarket {
    * @event
    */
   onLoaded(cb) {
-    this.#callbacks.loaded.push(cb);
+    this.#callbacks.loaded.push(cb)
   }
 
   /**
@@ -98,7 +98,7 @@ module.exports = (quoteSession) => class QuoteMarket {
    * @event
    */
   onData(cb) {
-    this.#callbacks.data.push(cb);
+    this.#callbacks.data.push(cb)
   }
 
   /**
@@ -107,7 +107,7 @@ module.exports = (quoteSession) => class QuoteMarket {
    * @event
    */
   onEvent(cb) {
-    this.#callbacks.event.push(cb);
+    this.#callbacks.event.push(cb)
   }
 
   /**
@@ -116,7 +116,7 @@ module.exports = (quoteSession) => class QuoteMarket {
    * @event
    */
   onError(cb) {
-    this.#callbacks.error.push(cb);
+    this.#callbacks.error.push(cb)
   }
 
   /** Close this listener */
@@ -125,8 +125,10 @@ module.exports = (quoteSession) => class QuoteMarket {
       quoteSession.send('quote_remove_symbols', [
         quoteSession.sessionID,
         this.#symbolKey,
-      ]);
+      ])
     }
-    delete this.#symbolListeners[this.#symbolKey][this.#symbolListenerID];
+    delete this.#symbolListeners[this.#symbolKey][this.#symbolListenerID]
   }
-};
+}
+
+export default sus

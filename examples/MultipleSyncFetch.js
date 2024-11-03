@@ -1,4 +1,4 @@
-const TradingView = require('../main');
+import  TradingView from '../main';
 
 /**
  * This examples synchronously fetches data from 3 indicators

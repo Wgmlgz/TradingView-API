@@ -1,5 +1,5 @@
-const axios = require('axios');
-const { genAuthCookies } = require('../utils');
+import  axios from 'axios';
+import { genAuthCookies } from '../utils';
 
 /**
  * @typedef {Object} AuthorizationUser

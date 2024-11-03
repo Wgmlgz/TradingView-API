@@ -1,4 +1,4 @@
-const TradingView = require('../main');
+import  TradingView from '../main';
 
 /**
  * This example tests custom timeframes like 1 second

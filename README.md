@@ -1,3 +1,5 @@
+# THIS IS A FORK, SO THIS CAN WORK IN BROWSER, MAY NOT WORK
+
 # TradingView API [![GitHub stars](https://img.shields.io/github/stars/Mathieu2301/TradingView-API.svg?style=social&label=Star&maxAge=2592000)](https://GitHub.com/Mathieu2301/TradingView-API/stargazers/)
 
 [![Tests](https://github.com/Mathieu2301/TradingView-API/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/Mathieu2301/TradingView-API/actions/workflows/tests.yml)

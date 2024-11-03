@@ -1,8 +1,8 @@
-const miscRequests = require('./src/miscRequests');
-const Client = require('./src/client');
-const BuiltInIndicator = require('./src/classes/BuiltInIndicator');
-const PineIndicator = require('./src/classes/PineIndicator');
-const PinePermManager = require('./src/classes/PinePermManager');
+import  miscRequests from './src/miscRequests';
+import  Client from './src/client';
+import  BuiltInIndicator from './src/classes/BuiltInIndicator';
+import  PineIndicator from './src/classes/PineIndicator';
+import  PinePermManager from './src/classes/PinePermManager';
 
 module.exports = { ...miscRequests };
 module.exports.Client = Client;
